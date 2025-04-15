@@ -11,7 +11,7 @@ public:
          radius = r;
     }
 
-    double getRadius() const
+    double getRadius()
     {
         return radius;
     }
@@ -21,7 +21,7 @@ class Circle : public Shape
 {
 public:
     Circle(double r = 0.0) : Shape(r) {}
-    double getArea() const
+    double calculateArea()
     {
         return M_PI * getRadius() * getRadius();
     }
@@ -33,7 +33,7 @@ int main() {
 
     for (int i = 0; i < size; ++i)
     {
-        cout << "Circle " << i + 1 << " Area: " << circles[i].getArea() << std::endl;
+        cout << "Circle " << i + 1 << " Area: " << circles[i].calculateArea() <<endl;
     }
 
     cout<<"\n24CE076_PatelDarshan\n";
