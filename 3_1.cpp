@@ -5,49 +5,49 @@ using namespace std;
 
 class Employee {
     string name;
-    double basicSalary;
+    double basic_salary;
     double bonus;
 
 public:
     Employee() {}
 
-    void initialize(string n, double bSalary, double b = 5000) {
+    void initialize(string n, double b_salary, double b = 5000) {
         name = n;
-        basicSalary = bSalary;
+        basic_salary = b_salary;
         bonus = b;
     }
 
-    double totalSalary() const {
-        return basicSalary + bonus;
+    double total_salary() const {
+        return basic_salary + bonus;
     }
 
     void display() const {
         cout << "Name: " << name << endl;
-        cout << "Basic Salary: " << basicSalary << endl;
+        cout << "Basic Salary: " << basic_salary << endl;
         cout << "Bonus: " << bonus << endl;
-        cout << "Total Salary: " << totalSalary() << endl << endl;
+        cout << "Total Salary: " << total_salary() << endl << endl;
     }
 };
 
-void displayAll(Employee employees[], int size, int index = 0) {
+void display_all(Employee employees[], int size, int index = 0) {
     if (index == size)
         return;
     employees[index].display();
-    displayAll(employees, size, index + 1);
+    display_all(employees, size, index + 1);
 }
 
 int main() {
-    const int numEmployees = 4;
-    Employee employees[numEmployees];
+    const int num_employees = 4;
+    Employee employees[num_employees];
 
     employees[0].initialize("Darshan", 55000);
     employees[1].initialize("Deep", 60000, 8000);
     employees[2].initialize("Krishiv", 52000);
     employees[3].initialize("Shaswat", 70000, 10000);
 
-    displayAll(employees, numEmployees);
+    display_all(employees, num_employees);
 
-    cout<<"\n24CE076_Pateldarshan\n";
+    cout << "\n24CE076_Pateldarshan\n";
 
     return 0;
 }
