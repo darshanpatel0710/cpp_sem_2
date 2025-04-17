@@ -1,45 +1,47 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class Student {
+
+class student {
 private:
     int roll_number;
     string name;
-    int marks1, marks2, marks3;
+    int marks_1, marks_2, marks_3;
 
 public:
-    Student() {
+    student() {
         roll_number = -1;
         name = "Rahul";
-        marks1 = marks2 = marks3 = 0;
+        marks_1 = marks_2 = marks_3 = 0;
     }
 
-    Student(int r, string n, int m1, int m2, int m3) {
+    student(int r, string n, int m1, int m2, int m3) {
         roll_number = r;
         name = n;
-        marks1 = m1;
-        marks2 = m2;
-        marks3 = m3;
+        marks_1 = m1;
+        marks_2 = m2;
+        marks_3 = m3;
     }
 
-    float calculateAverage() {
-        return (marks1 + marks2 + marks3) / 3.0;
+    float calculate_average() {
+        return (marks_1 + marks_2 + marks_3) / 3.0;
     }
-    void displayDetails() {
+
+    void display_details() {
         cout << "Roll Number: " << roll_number << endl;
         cout << "Name: " << name << endl;
-        cout << "Marks in Subject 1: " << marks1 << endl;
-        cout << "Marks in Subject 2: " << marks2 << endl;
-        cout << "Marks in Subject 3: " << marks3 << endl;
-        cout << "Average Marks: " << calculateAverage() << endl;
+        cout << "Marks in Subject 1: " << marks_1 << endl;
+        cout << "Marks in Subject 2: " << marks_2 << endl;
+        cout << "Marks in Subject 3: " << marks_3 << endl;
+        cout << "Average Marks: " << calculate_average() << endl;
         cout << "-----------------------------" << endl;
     }
 };
 
 int main() {
-    const int MAX = 10;
-    Student students[MAX];
-    int studentCount = 0;
+    const int max_students = 10;
+    student students[max_students];
+    int student_count = 0;
     int choice;
 
 menu:
@@ -59,10 +61,10 @@ menu:
 
             if (num <= 0) {
                 cout << "Please enter a valid positive number.\n";
-            } else if (studentCount + num <= MAX) {
+            } else if (student_count + num <= max_students) {
                 for (int i = 0; i < num; i++) {
-                    students[studentCount] = Student();
-                    studentCount++;
+                    students[student_count] = student();
+                    student_count++;
                 }
                 cout << num << " default students added successfully.\n";
             } else {
@@ -70,47 +72,52 @@ menu:
             }
             goto menu;
         }
+
         case 2: {
-            if (studentCount < MAX) {
+            if (student_count < max_students) {
                 int roll, m1, m2, m3;
-                string name;
+                string student_name;
                 cout << "Enter Roll Number: ";
                 cin >> roll;
                 cin.ignore();
                 cout << "Enter Name: ";
-                getline(cin, name);
+                getline(cin, student_name);
                 cout << "Enter Marks in Subject 1: ";
                 cin >> m1;
                 cout << "Enter Marks in Subject 2: ";
                 cin >> m2;
                 cout << "Enter Marks in Subject 3: ";
                 cin >> m3;
-                students[studentCount] = Student(roll, name, m1, m2, m3);
-                studentCount++;
+
+                students[student_count] = student(roll, student_name, m1, m2, m3);
+                student_count++;
                 cout << "Student added successfully.\n";
             } else {
                 cout << "Student limit reached.\n";
             }
             goto menu;
         }
+
         case 3: {
-            if (studentCount == 0) {
+            if (student_count == 0) {
                 cout << "No student records to display.\n";
             } else {
                 cout << "\n--- All Student Records ---\n";
-                for (int i = 0; i < studentCount; i++) {
-                    students[i].displayDetails();
+                for (int i = 0; i < student_count; i++) {
+                    students[i].display_details();
                 }
             }
             goto menu;
         }
+
         case 4:
             cout << "Exiting the program.\n";
             break;
+
         default:
             cout << "Invalid choice. Try again.\n";
             goto menu;
     }
+
     return 0;
 }
-
