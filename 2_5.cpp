@@ -1,40 +1,44 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-class Loan {
+
+class loan {
 private:
-    double loanAmount;
-    double annualInterestRate;
-    int tenureMonths;
+    double loan_amount;
+    double annual_interest_rate;
+    int tenure_months;
 
 public:
-    void getInput() {
+    void get_input() {
         cout << "Enter Loan Amount: ";
-        cin >> loanAmount;
+        cin >> loan_amount;
         cout << "Enter Annual Interest Rate (in %): ";
-        cin >> annualInterestRate;
+        cin >> annual_interest_rate;
         cout << "Enter Loan Tenure (in months): ";
-        cin >> tenureMonths;
+        cin >> tenure_months;
     }
-    double calculateEMI() {
-        double monthlyRate = annualInterestRate / (12 * 100);
-        double emi = loanAmount * monthlyRate * pow(1 + monthlyRate, tenureMonths) / (pow(1 + monthlyRate, tenureMonths) - 1);
+
+    double calculate_emi() {
+        double monthly_rate = annual_interest_rate / (12 * 100);
+        double emi = loan_amount * monthly_rate * pow(1 + monthly_rate, tenure_months) /
+                     (pow(1 + monthly_rate, tenure_months) - 1);
         return emi;
     }
-    void displayDetails() {
-        double emi = calculateEMI();
-        cout << "Loan Amount: " << loanAmount << endl;
-        cout << "Annual Interest Rate: " << annualInterestRate << "%" << endl;
-        cout << "Loan Tenure: " << tenureMonths << " months" << endl;
+
+    void display_details() {
+        double emi = calculate_emi();
+        cout << "Loan Amount: " << loan_amount << endl;
+        cout << "Annual Interest Rate: " << annual_interest_rate << "%" << endl;
+        cout << "Loan Tenure: " << tenure_months << " months" << endl;
         cout << "Calculated EMI: " << emi << endl;
     }
 };
 
 int main() {
-    Loan loan;
-    loan.getInput();
-    loan.displayDetails();
+    loan l;
+    l.get_input();
+    l.display_details();
 
-    cout<<"\n24CE076_PatelDarshan\n";
+    cout << "\n24CE076_patel_darshan\n";
     return 0;
 }
