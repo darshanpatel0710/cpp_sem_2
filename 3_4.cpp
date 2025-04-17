@@ -40,17 +40,17 @@ public:
         cout << "\n";
     }
 
-    T findMax() {
+    T find_max() {
         if (size == 0 || arr == nullptr) {
             cout << "Collection is empty. Cannot find max.\n";
             return T();
         }
-        T maxVal = arr[0];
+        T max_val = arr[0];
         for (int i = 1; i < size; i++) {
-            if (arr[i] > maxVal)
-                maxVal = arr[i];
+            if (arr[i] > max_val)
+                max_val = arr[i];
         }
-        return maxVal;
+        return max_val;
     }
 
     void reverse() {
@@ -76,7 +76,7 @@ public:
 int main() {
     int choice;
 
-menu:
+main_menu:
     cout << "\n======= COLLECTION MENU =======\n";
     cout << "1. Integer Collection\n";
     cout << "2. Float Collection\n";
@@ -89,51 +89,51 @@ menu:
     case 1: {
         Collection<int> col;
         col.create();
-    intMenu:
+    int_menu:
         cout << "\n-- Integer Operations --\n";
         cout << "1. Display\n2. Find Max\n3. Reverse\n4. Back\n";
         cout << "Enter operation: ";
         cin >> choice;
         switch (choice) {
-        case 1: col.display(); goto intMenu;
-        case 2: cout << "Max value: " << col.findMax() << "\n"; goto intMenu;
-        case 3: col.reverse(); goto intMenu;
-        case 4: goto menu;
-        default: cout << "Invalid choice.\n"; goto intMenu;
+        case 1: col.display(); goto int_menu;
+        case 2: cout << "Max value: " << col.find_max() << "\n"; goto int_menu;
+        case 3: col.reverse(); goto int_menu;
+        case 4: goto main_menu;
+        default: cout << "Invalid choice.\n"; goto int_menu;
         }
     }
 
     case 2: {
         Collection<float> col;
         col.create();
-    floatMenu:
+    float_menu:
         cout << "\n-- Float Operations --\n";
         cout << "1. Display\n2. Find Max\n3. Reverse\n4. Back\n";
         cout << "Enter operation: ";
         cin >> choice;
         switch (choice) {
-        case 1: col.display(); goto floatMenu;
-        case 2: cout << "Max value: " << col.findMax() << "\n"; goto floatMenu;
-        case 3: col.reverse(); goto floatMenu;
-        case 4: goto menu;
-        default: cout << "Invalid choice.\n"; goto floatMenu;
+        case 1: col.display(); goto float_menu;
+        case 2: cout << "Max value: " << col.find_max() << "\n"; goto float_menu;
+        case 3: col.reverse(); goto float_menu;
+        case 4: goto main_menu;
+        default: cout << "Invalid choice.\n"; goto float_menu;
         }
     }
 
     case 3: {
         Collection<char> col;
         col.create();
-    charMenu:
+    char_menu:
         cout << "\n-- Character Operations --\n";
         cout << "1. Display\n2. Find Max (lexicographically)\n3. Reverse\n4. Back\n";
         cout << "Enter operation: ";
         cin >> choice;
         switch (choice) {
-        case 1: col.display(); goto charMenu;
-        case 2: cout << "Max value: " << col.findMax() << "\n"; goto charMenu;
-        case 3: col.reverse(); goto charMenu;
-        case 4: goto menu;
-        default: cout << "Invalid choice.\n"; goto charMenu;
+        case 1: col.display(); goto char_menu;
+        case 2: cout << "Max value: " << col.find_max() << "\n"; goto char_menu;
+        case 3: col.reverse(); goto char_menu;
+        case 4: goto main_menu;
+        default: cout << "Invalid choice.\n"; goto char_menu;
         }
     }
 
@@ -143,12 +143,10 @@ menu:
 
     default:
         cout << "Invalid choice. Try again.\n";
-        goto menu;
+        goto main_menu;
     }
 
-    cout<<"24CE076_PatelDarshan";
+    cout << "24CE076_PatelDarshan";
 
     return 0;
 }
-
-
