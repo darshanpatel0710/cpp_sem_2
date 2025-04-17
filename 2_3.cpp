@@ -1,58 +1,58 @@
 #include <iostream>
 using namespace std;
 
-class BankAccount {
-    char AccountHolder[20];
-    long int AccountNumber;
-    float Balance;
+class bank_account {
+    char account_holder[20];
+    long int account_number;
+    float balance;
 
 public:
-    void AddDetail(int x) {
+    void add_detail(int x) {
         cout << "Enter the Account holder Name: ";
-        cin >> AccountHolder;
+        cin >> account_holder;
         cout << "Enter account number: ";
-        AccountNumber=x;
+        account_number = x;
         cout << "Enter your Balance: ";
-        cin >> Balance;
+        cin >> balance;
     }
 
-    void DepositMoney() {
-        float Deposit;
+    void deposit_money() {
+        float deposit;
         cout << "Enter the amount you want to deposit: ";
-        cin >> Deposit;
-        Balance += Deposit;
+        cin >> deposit;
+        balance += deposit;
         cout << "Amount deposited successfully.\n";
     }
 
-    long int GetAccNum() {
-        return AccountNumber;
+    long int get_acc_num() {
+        return account_number;
     }
 
-    void WithdrawMoney() {
-        float Withdraw;
+    void withdraw_money() {
+        float withdraw;
         cout << "Enter the amount you want to withdraw: ";
-        cin >> Withdraw;
-        if (Withdraw > Balance) {
+        cin >> withdraw;
+        if (withdraw > balance) {
             cout << "Insufficient Balance\n";
         } else {
-            Balance -= Withdraw;
+            balance -= withdraw;
             cout << "Withdrawal successful.\n";
         }
     }
 
-    void DisplayDetails() {
-        cout << "Account holder Name: " << AccountHolder << endl;
-        cout << "Account Number: " << AccountNumber << endl;
-        cout << "Balance is: " << Balance << endl;
+    void display_details() {
+        cout << "Account holder Name: " << account_holder << endl;
+        cout << "Account Number: " << account_number << endl;
+        cout << "Balance is: " << balance << endl;
     }
 };
 
 int main() {
-    BankAccount B[2];
+    bank_account b[2];
     int choice;
-    long int AccNum;
+    long int acc_num;
     bool found;
-    bool isDetailsAdded = false;
+    bool is_details_added = false;
 
     while (true) {
         cout << "--------------------------------\n";
@@ -69,22 +69,22 @@ int main() {
             case 1:
                 for (int i = 0; i < 2; i++) {
                     cout << "\nEntering details for account " << i + 1 << ":\n";
-                    B[i].AddDetail(i+1);
+                    b[i].add_detail(i + 1);
                 }
-                isDetailsAdded = true;
+                is_details_added = true;
                 break;
 
             case 2:
-                if (!isDetailsAdded) {
+                if (!is_details_added) {
                     cout << "Please add account details first.\n";
                     break;
                 }
                 cout << "Enter Account number: ";
-                cin >> AccNum;
+                cin >> acc_num;
                 found = false;
                 for (int i = 0; i < 2; i++) {
-                    if (AccNum == B[i].GetAccNum()) {
-                        B[i].DepositMoney();
+                    if (acc_num == b[i].get_acc_num()) {
+                        b[i].deposit_money();
                         found = true;
                         break;
                     }
@@ -95,16 +95,16 @@ int main() {
                 break;
 
             case 3:
-                if (!isDetailsAdded) {
+                if (!is_details_added) {
                     cout << "Please add account details first.\n";
                     break;
                 }
                 cout << "Enter Account number: ";
-                cin >> AccNum;
+                cin >> acc_num;
                 found = false;
                 for (int i = 0; i < 2; i++) {
-                    if (AccNum == B[i].GetAccNum()) {
-                        B[i].WithdrawMoney();
+                    if (acc_num == b[i].get_acc_num()) {
+                        b[i].withdraw_money();
                         found = true;
                         break;
                     }
@@ -115,16 +115,16 @@ int main() {
                 break;
 
             case 4:
-                if (!isDetailsAdded) {
+                if (!is_details_added) {
                     cout << "Please add account details first.\n";
                     break;
                 }
                 cout << "Enter Account number: ";
-                cin >> AccNum;
+                cin >> acc_num;
                 found = false;
                 for (int i = 0; i < 2; i++) {
-                    if (AccNum == B[i].GetAccNum()) {
-                        B[i].DisplayDetails();
+                    if (acc_num == b[i].get_acc_num()) {
+                        b[i].display_details();
                         found = true;
                         break;
                     }
@@ -136,7 +136,7 @@ int main() {
 
             case 5:
                 cout << "Exiting program. Goodbye!\n";
-                cout<<"\n24CE076_PatelDarshan\n";
+                cout << "\n24CE076_PatelDarshan\n";
                 return 0;
 
             default:
