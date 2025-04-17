@@ -1,29 +1,29 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
 class Shape {
 private:
     double radius;
+
 public:
     Shape(double r = 0.0) : radius(r) {}
-    void setRadius(double r)
-    {
-         radius = r;
+
+    void set_radius(double r) {
+        radius = r;
     }
 
-    double getRadius()
-    {
+    double get_radius() {
         return radius;
     }
 };
 
-class Circle : public Shape
-{
+class Circle : public Shape {
 public:
     Circle(double r = 0.0) : Shape(r) {}
-    double calculateArea()
-    {
-        return M_PI * getRadius() * getRadius();
+
+    double calculate_area() {
+        return M_PI * get_radius() * get_radius();
     }
 };
 
@@ -31,12 +31,11 @@ int main() {
     const int size = 3;
     Circle circles[size] = { Circle(1.5), Circle(2.0), Circle(2.8) };
 
-    for (int i = 0; i < size; ++i)
-    {
-        cout << "Circle " << i + 1 << " Area: " << circles[i].calculateArea() <<endl;
+    for (int i = 0; i < size; ++i) {
+        cout << "Circle " << i + 1 << " Area: " << circles[i].calculate_area() << endl;
     }
 
-    cout<<"\n24CE076_PatelDarshan\n";
+    cout << "\n24CE076_PatelDarshan\n";
 
     return 0;
 }
