@@ -2,24 +2,26 @@
 #include <string>
 using namespace std;
 
-class Item {
+class item {
 private:
     int id;
     string name;
     double price;
     int quantity;
-public:
-    Item() : id(0), name("Unknown"), price(0.0), quantity(0) {}
-    Item(int i, string n, double p, int q) : id(i), name(n), price(p), quantity(q) {}
 
-    void setDetails(int i, string n, double p, int q) {
+public:
+    item() : id(0), name("unknown"), price(0.0), quantity(0) {}
+
+    item(int i, string n, double p, int q) : id(i), name(n), price(p), quantity(q) {}
+
+    void set_details(int i, string n, double p, int q) {
         id = i;
         name = n;
         price = p;
         quantity = q;
     }
 
-    void addStock(int amount) {
+    void add_stock(int amount) {
         if (amount > 0)
             quantity += amount;
     }
@@ -37,7 +39,7 @@ public:
              << ", Price: $" << price << ", Quantity: " << quantity << endl;
     }
 
-    int getId() const {
+    int get_id() const {
         return id;
     }
 };
@@ -47,7 +49,7 @@ int main() {
     cout << "Enter number of items to manage: ";
     cin >> size;
 
-    Item* inventory = new Item[size];
+    item* inventory = new item[size];
 
     for (int i = 0; i < size; ++i) {
         int id, quantity;
@@ -55,7 +57,7 @@ int main() {
         string name;
         cout << "\nEnter details for item " << (i + 1) << ":\n";
 
-        id=i+1;
+        id = i + 1;
         cin.ignore();
         cout << "Name: ";
         getline(cin, name);
@@ -63,10 +65,10 @@ int main() {
         cin >> price;
         cout << "Quantity: ";
         cin >> quantity;
-        inventory[i].setDetails(id, name, price, quantity);
+        inventory[i].set_details(id, name, price, quantity);
     }
 
-    int choice, itemId, amount;
+    int choice, item_id, amount;
     bool running = true;
 
     while (running) {
@@ -76,12 +78,12 @@ int main() {
         switch (choice) {
             case 1:
                 cout << "Enter item ID to add stock: ";
-                cin >> itemId;
+                cin >> item_id;
                 cout << "Enter amount to add: ";
                 cin >> amount;
                 for (int i = 0; i < size; ++i) {
-                    if (inventory[i].getId() == itemId) {
-                        inventory[i].addStock(amount);
+                    if (inventory[i].get_id() == item_id) {
+                        inventory[i].add_stock(amount);
                         break;
                     }
                 }
@@ -89,11 +91,11 @@ int main() {
 
             case 2:
                 cout << "Enter item ID to sell: ";
-                cin >> itemId;
+                cin >> item_id;
                 cout << "Enter amount to sell: ";
                 cin >> amount;
                 for (int i = 0; i < size; ++i) {
-                    if (inventory[i].getId() == itemId) {
+                    if (inventory[i].get_id() == item_id) {
                         if (!inventory[i].sell(amount)) {
                             cout << "Not enough stock.\n";
                         }
@@ -119,7 +121,6 @@ int main() {
 
     delete[] inventory;
 
-    cout<<"24CE076_PatelDarshan\n";
+    cout << "24CE076_patel_darshan\n";
     return 0;
-
 }
