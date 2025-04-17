@@ -5,13 +5,13 @@ using namespace std;
 
 class Account {
 public:
-    string accountNumber;
-    string holderName;
+    string account_number;
+    string holder_name;
     double balance;
     Account* next;
 
-    Account(const string& accNum, const string& name, double initialBalance)
-        : accountNumber(accNum), holderName(name), balance(initialBalance), next(nullptr) {}
+    Account(const string& acc_num, const string& name, double initial_balance)
+        : account_number(acc_num), holder_name(name), balance(initial_balance), next(nullptr) {}
 
     void deposit(double amount) {
         if (amount > 0) {
@@ -27,7 +27,7 @@ public:
         return false;
     }
 
-    bool transferTo(Account& recipient, double amount) {
+    bool transfer_to(Account& recipient, double amount) {
         if (withdraw(amount)) {
             recipient.deposit(amount);
             return true;
@@ -40,86 +40,85 @@ class Bank {
 private:
     Account* head;
 
-    bool createAccountRecursive(Account* current, const string& accNum, const string& name, double initialBalance) {
+    bool create_account_recursive(Account* current, const string& acc_num, const string& name, double initial_balance) {
         if (current == nullptr) {
             return false;
         }
-        if (current->accountNumber == accNum) {
+        if (current->account_number == acc_num) {
             return true;
         }
         if (current->next == nullptr) {
-            current->next = new Account(accNum, name, initialBalance);
+            current->next = new Account(acc_num, name, initial_balance);
             return true;
         }
-        return createAccountRecursive(current->next, accNum, name, initialBalance);
+        return create_account_recursive(current->next, acc_num, name, initial_balance);
     }
 
-    Account* findAccountRecursive(Account* current, const string& accNum) {
+    Account* find_account_recursive(Account* current, const string& acc_num) {
         if (current == nullptr) {
             return nullptr;
         }
-        if (current->accountNumber == accNum) {
+        if (current->account_number == acc_num) {
             return current;
         }
-        return findAccountRecursive(current->next, accNum);
+        return find_account_recursive(current->next, acc_num);
     }
 
-    int countAccountsRecursive(Account* current) {
+    int count_accounts_recursive(Account* current) {
         if (current == nullptr) {
             return 0;
         }
-        return 1 + countAccountsRecursive(current->next);
+        return 1 + count_accounts_recursive(current->next);
     }
 
 public:
     Bank() : head(nullptr) {}
 
-    bool createAccount(const string& accNum, const string& name, double initialBalance) {
+    bool create_account(const string& acc_num, const string& name, double initial_balance) {
         if (head == nullptr) {
-            head = new Account(accNum, name, initialBalance);
+            head = new Account(acc_num, name, initial_balance);
             return true;
         }
-        return createAccountRecursive(head, accNum, name, initialBalance);
+        return create_account_recursive(head, acc_num, name, initial_balance);
     }
 
-    bool transfer(const string& fromAcc, const string& toAcc, double amount) {
-        Account* sender = findAccountRecursive(head, fromAcc);
-        Account* receiver = findAccountRecursive(head, toAcc);
+    bool transfer(const string& from_acc, const string& to_acc, double amount) {
+        Account* sender = find_account_recursive(head, from_acc);
+        Account* receiver = find_account_recursive(head, to_acc);
         if (sender && receiver) {
-            return sender->transferTo(*receiver, amount);
+            return sender->transfer_to(*receiver, amount);
         }
         return false;
     }
 
-    Account* getAccount(const string& accNum) {
-        return findAccountRecursive(head, accNum);
+    Account* get_account(const string& acc_num) {
+        return find_account_recursive(head, acc_num);
     }
 
-    int getTotalAccounts() {
-        return countAccountsRecursive(head);
+    int get_total_accounts() {
+        return count_accounts_recursive(head);
     }
 };
 
 int main() {
     Bank bank;
-    bank.createAccount("123", "Darshan", 1000.0);
-    bank.createAccount("456", "Krishiv", 500.0);
+    bank.create_account("123", "Darshan", 1000.0);
+    bank.create_account("456", "Krishiv", 500.0);
     bank.transfer("123", "456", 200.0);
 
-    Account* acc = bank.getAccount("123");
+    Account* acc = bank.get_account("123");
     if (acc) {
-        cout << acc->holderName << " Balance: " << acc->balance << endl;
+        cout << acc->holder_name << " Balance: " << acc->balance << endl;
     }
 
-    acc = bank.getAccount("456");
+    acc = bank.get_account("456");
     if (acc) {
-        cout << acc->holderName << " Balance: " << acc->balance << endl;
+        cout << acc->holder_name << " Balance: " << acc->balance << endl;
     }
 
-    cout << "Total Accounts: " << bank.getTotalAccounts() << endl;
+    cout << "Total Accounts: " << bank.get_total_accounts() << endl;
 
-    cout<<"\n24CE076_PatelDarshan\n";
+    cout << "\n24CE076_PatelDarshan\n";
 
     return 0;
 }
-
