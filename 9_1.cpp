@@ -40,7 +40,7 @@ int main() {
     cout << fixed;
     cout << "Loan-to-Income Ratio: " << ratio << endl;
 
-    cout << "24CE011_Khushi_Bhatt" << endl;
+    cout << "24CE076_PatelDarshan" << endl;
 
     return 0;
 }
